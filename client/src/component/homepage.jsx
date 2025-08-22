@@ -9,8 +9,13 @@ function HomePage(){
     const [search, issearch] =useState("")
 
     async function datas(keyword) {
+        keyword=keyword.trim()
+        try{
         const newdata= await axios.get(`http://localhost:4001/trips?keywords=${keyword}`)
         isnewarry(newdata.data.data)
+        }catch(error){
+            console.log(error)
+        }
     }
 
 
@@ -30,7 +35,7 @@ function HomePage(){
 
   function addcate(text){
     if(!search.includes(text) ){
-        issearch(text)
+        issearch(search+" "+text)
     } 
   }
     
